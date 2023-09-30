@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Chat;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $all_chats = Chat::with('chatUsers')->get();
+
+    foreach ($all_chats AS $chat) {
+        echo "<b>" . $chat->name . "</b>" . '<br>';
+        foreach ($chat->chatUsers AS $chat_user) {
+            echo "----->" . $chat_user->name . '<br>';
+        }
+    }
 });
