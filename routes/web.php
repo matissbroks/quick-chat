@@ -14,13 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $all_chats = Chat::with('chatUsers')->get();
-
-    foreach ($all_chats AS $chat) {
-        echo "<b>" . $chat->name . "</b>" . '<br>';
-        foreach ($chat->chatUsers AS $chat_user) {
-            echo "----->" . $chat_user->name . '<br>';
-        }
-    }
-});
+Route::get('/', [App\Http\Controllers\ChatController::class, 'index'])->name('chat.index');
+Route::post('/chat-save', [App\Http\Controllers\ChatController::class, 'save'])->name('chat.save');
