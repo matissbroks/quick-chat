@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\ChatController::class, 'index'])->name('chat.index');
 Route::post('/chat-save', [App\Http\Controllers\ChatController::class, 'save'])->name('chat.save');
+Route::get('/chat/{unique_name}', [App\Http\Controllers\ChatController::class, 'chat'])->name('chat.view');

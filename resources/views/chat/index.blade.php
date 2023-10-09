@@ -10,14 +10,11 @@
 <body>
 
 @foreach($all_chats AS $chat)
+    <?php /** @var \App\Models\Chat $chat */ ?>
+
     <div>
-        {{ $chat->name }}
+        <a href="{{ route('chat.view', ['unique_name' => $chat->unique_name]) }}">{{ $chat->name }}</a>
     </div>
-    @foreach($chat->chatUsers AS $chat_user)
-        <div>
-            -----> {{ $chat_user->name }}
-        </div>
-    @endforeach
 @endforeach
 
 <br>
