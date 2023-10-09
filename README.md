@@ -22,7 +22,7 @@ Laravel based web application for quick chat.
 
 ### Nex feature to be implemented
 
-- Can open individual chats
+- Can send messages
 
 ---
 
@@ -30,13 +30,12 @@ Laravel based web application for quick chat.
 
 - [x] Can create chat rooms
   - Generate unique chat ID
-- [ ] Can open individual chats
-  - Can see all messages
-  - Can see all users
-  - Can see chat name
+- [x] Can open individual chats
+  - [ ] Can see all messages
+  - [x] Can see all users
+  - [x] Can see chat name
 - [ ] Can change chat name
 - [ ] Can delete chat
   - Deletes all related data
 - [ ] Others can change they're nicknames
 - [ ] Can send messages
-  - Can send text messages
