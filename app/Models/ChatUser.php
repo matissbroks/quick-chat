@@ -36,9 +36,16 @@ class ChatUser extends Model
     protected $primaryKey = 'id';
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['name'];
+
+    /**
      * @return  BelongsTo
      */
-    public function chat()
+    public function chat(): BelongsTo
     {
         return $this->belongsTo('App\Models\Chat', 'id', 'chat_id');
     }
