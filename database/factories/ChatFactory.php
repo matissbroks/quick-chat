@@ -2,11 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Chat;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends Factory<\App\Models\Chat>
+ * @extends Factory<Chat>
  */
 class ChatFactory extends Factory
 {
