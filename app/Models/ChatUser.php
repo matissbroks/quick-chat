@@ -12,10 +12,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $id
  * @property string $name
  * @property int $chat_id
+ * @property string $password
  * @property string $created_at
  * @property string $updated_at
  * @property Chat $chat
-// * @property Chat[] $timesheetSubmissions
  */
 class ChatUser extends Model
 {
@@ -41,6 +41,15 @@ class ChatUser extends Model
      * @var array
      */
     protected $fillable = ['name'];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password'
+    ];
 
     /**
      * @return  BelongsTo
