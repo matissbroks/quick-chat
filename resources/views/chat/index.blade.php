@@ -7,7 +7,7 @@
         <?php /** @var \App\Models\Chat $chat */ ?>
 
         <div>
-            <a href="{{ route('chat.view', ['unique_name' => $chat->unique_name]) }}">{{ $chat->name }}</a>
+            <a href="{{ route('chat.enter', ['unique_name' => $chat->unique_name]) }}">{{ $chat->name }}</a>
         </div>
     @endforeach
 

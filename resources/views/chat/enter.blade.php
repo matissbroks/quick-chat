@@ -9,9 +9,11 @@
         <!-- Some JS and styles -->
     @endsection
 
-    <h2>Join chat: {{ $chat->name }}</h2>
+    <h2>Log in into chat: {{ $entering_chat->name }}</h2>
 
-    <form action="{{ route('chat.join', ['unique_name' => $chat->unique_name]) }}" method="post">
+    <p>Or register <a href="{{ route('chat.invite', ['unique_name' => $entering_chat->unique_name]) }}">HERE</a></p>
+
+    <form action="{{ route('chat.enter', ['unique_name' => $entering_chat->unique_name]) }}" method="post">
         @csrf
 
         <label for="username">
@@ -24,7 +26,7 @@
             <input name="password" type="password">
         </label>
 
-        <button type="submit">Join</button>
+        <button type="submit">Enter</button>
     </form>
 
 </x-layout>
