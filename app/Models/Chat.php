@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $created_at
  * @property string $updated_at
  * @property ChatUser[] $chat_users
+ * @property Message[] $messages
  */
 class Chat extends Model
 {
@@ -47,8 +48,16 @@ class Chat extends Model
     /**
      * @return HasMany
      */
-    public function chatUsers()
+    public function chatUsers(): HasMany
     {
-        return $this->hasMany('App\Models\ChatUser', 'chat_id', 'id');
+        return $this->hasMany(ChatUser::class, 'chat_id', 'id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function messages(): HasMany
+    {
+        return $this->hasMany(Message::class, 'chat_id', 'id');
     }
 }

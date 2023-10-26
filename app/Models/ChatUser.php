@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Models\Chat
@@ -16,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $created_at
  * @property string $updated_at
  * @property Chat $chat
+ * @property Message[] $messages
  */
 class ChatUser extends Model
 {
@@ -56,6 +58,14 @@ class ChatUser extends Model
      */
     public function chat(): BelongsTo
     {
-        return $this->belongsTo('App\Models\Chat', 'id', 'chat_id');
+        return $this->belongsTo(Chat::class, 'id', 'chat_id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function messages(): HasMany
+    {
+        return $this->hasMany(Message::class, 'chat_user_id', 'id');
     }
 }
