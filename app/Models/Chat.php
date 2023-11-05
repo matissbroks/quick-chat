@@ -50,7 +50,7 @@ class Chat extends Model
      */
     public function chatUsers(): HasMany
     {
-        return $this->hasMany(ChatUser::class, 'chat_id', 'id');
+        return $this->hasMany(ChatUser::class);
     }
 
     /**
@@ -58,6 +58,6 @@ class Chat extends Model
      */
     public function messages(): HasMany
     {
-        return $this->hasMany(Message::class, 'chat_id', 'id');
+        return $this->hasMany(Message::class);
     }
 }

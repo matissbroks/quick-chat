@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Chat;
 use App\Models\ChatUser;
+use App\Models\Message;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -46,7 +47,9 @@ class ChatController extends Controller
 
         $chat_user = ChatUser::whereName($username)->first();
 
-        return view('chat.home', compact('this_chat', 'chat_user'));
+        $messages = Message::with('chatUser')->where('chat_id', $this_chat->id)->get()->take(10);
+
+        return view('chat.home', compact('this_chat', 'chat_user', 'messages'));
     }
 
     public function enter(Request $request, string $unique_name)

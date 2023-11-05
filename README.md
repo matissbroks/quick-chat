@@ -25,14 +25,14 @@ Laravel based web application for quick chat.
 - [x] Can create chat rooms
     - Generate unique chat ID
 - [x] Can open individual chats
-    - [ ] Can see all messages
+    - [x] Can see all messages
     - [x] Can see all users
     - [x] Can see chat name
 - [ ] Can change chat name
 - [ ] Can delete chat
     - Deletes all related data
 - [ ] Others can change they're nicknames
-- [ ] Can send messages
+- [x] Can send messages
 
 ---
 

@@ -15,8 +15,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $message
  * @property string $created_at
  * @property string $updated_at
- * @property Chat $chat
- * @property ChatUser $user
+ * @property-read Chat $chat
+ * @property-read ChatUser $user
  */
 class Message extends Model
 {
@@ -48,7 +48,7 @@ class Message extends Model
      */
     public function chat(): BelongsTo
     {
-        return $this->belongsTo(Chat::class, 'id', 'chat_id');
+        return $this->belongsTo(Chat::class);
     }
 
     /**
@@ -56,6 +56,6 @@ class Message extends Model
      */
     public function chatUser(): BelongsTo
     {
-        return $this->belongsTo(ChatUser::class, 'id', 'chat_user_id');
+        return $this->belongsTo(ChatUser::class);
     }
 }

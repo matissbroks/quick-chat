@@ -58,7 +58,7 @@ class ChatUser extends Model
      */
     public function chat(): BelongsTo
     {
-        return $this->belongsTo(Chat::class, 'id', 'chat_id');
+        return $this->belongsTo(Chat::class);
     }
 
     /**
@@ -66,6 +66,6 @@ class ChatUser extends Model
      */
     public function messages(): HasMany
     {
-        return $this->hasMany(Message::class, 'chat_user_id', 'id');
+        return $this->hasMany(Message::class);
     }
 }
