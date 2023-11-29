@@ -20,23 +20,6 @@ Laravel based web application for quick chat.
 
 ---
 
-### Planned features
-
-- [x] Can create chat rooms
-    - Generate unique chat ID
-- [x] Can open individual chats
-    - [x] Can see all messages
-    - [x] Can see all users
-    - [x] Can see chat name
-- [ ] Can change chat name
-- [ ] Can delete chat
-    - Deletes all related data
-- [ ] Others can change they're nicknames
-- [x] Can send messages
-
----
-
 ### Things to have
 
-- [ ] Unit, mby feature testing
-- [ ] GitHub action, that run STAN and Code sniffer
+- [ ] UI improvements using CSS, JS
