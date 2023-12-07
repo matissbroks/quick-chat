@@ -8,10 +8,11 @@
         <title>Quick chat</title>
 
         @yield('scripts')
+        @vite('resources/css/app.css')
     </head>
 
     <body>
-        <ul>
+        <ul class="list-none">
             <li><a href="{{ route('chat.index') }}">HOME</a></li>
         </ul>
 

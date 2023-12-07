@@ -3,9 +3,15 @@ FROM php:8.2-fpm
 WORKDIR /var/www
 
 # prepare for adding deps
-RUN apt-get update && apt-get install -y gnupg
+RUN apt-get update && apt-get install -y gnupg nodejs npm
 
 RUN apt-get install -y zlib1g-dev libpng-dev libjpeg62-turbo-dev libfreetype6-dev
+
+# Install Node.js and npm
+RUN apt-get update \
+    && apt-get install -y gnupg \
+    && curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
+    && apt-get install -y nodejs
 
 # install other deps for imagic, mbstring, ldap, zip
 RUN apt-get install -y \
