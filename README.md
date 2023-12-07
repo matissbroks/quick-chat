@@ -24,5 +24,6 @@ Laravel based web application for quick chat.
 
 - To rebuild PHP image and run all services, run this `docker-compose up --build -d`
 - Need to run this too `docker-compose exec app npm install`
+- Rebuilding assets, cuz yeah`docker-compose exec app npm run build`
 
 - [ ] UI improvements using CSS, JS
