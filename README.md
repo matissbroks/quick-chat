@@ -26,4 +26,7 @@ Laravel based web application for quick chat.
 - Need to run this too `docker-compose exec app npm install`
 - Rebuilding assets, cuz yeah`docker-compose exec app npm run build`
 
-- [ ] UI improvements using CSS, JS
+- [ ] UI improvements using Tailwind CSS
+  - [ ] Joining chat View
+  - [ ] Main chat area
+- [ ] Localization
