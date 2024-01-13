@@ -47,7 +47,7 @@ class ChatController extends Controller
 
         $chat_user = ChatUser::whereName($username)->first();
 
-        $messages = Message::with('chatUser')->where('chat_id', $this_chat->id)->get()->take(10);
+        $messages = Message::with('chatUser')->where('chat_id', $this_chat->id)->get();
 
         return view('chat.home', compact('this_chat', 'chat_user', 'messages'));
     }

@@ -7,68 +7,69 @@
 ?>
 
 <x-layout>
-    <style>
-        .align-center {
-            width: 60%;
-            margin: 0 auto;
-        }
-
-        #chat_field {
-            padding: 0.5rem 1.25rem 0 1.25rem;
-            width: 60%;
-            min-height: 250px;
-            border: 1px solid red;
-            margin: 0 auto;
-        }
-
-        .message_row {
-            width: 100%;
-            height: 20px;
-            border: 1px solid green;
-            margin-bottom: 0.25rem;
-        }
-
-        #send_message {
-            margin-top: 1rem;
-        }
-    </style>
-
     @section('scripts')
         <!-- Some JS and styles -->
     @endsection
 
-    <h3>{{ $this_chat->name }}</h3>
-    <p>Invite link: <code>{{ route('chat.enter', ['unique_name' => $this_chat->unique_name]) }}</code></p>
-
-    <p>Welcome: {{ $chat_user->name }}</p>
-
-    @foreach($this_chat->chatUsers AS $index => $chat_user)
-            <?php /** @var \App\Models\ChatUser $chat_user */ ?>
-
-        <div>
-            ({{ $index + 1 }}) {{ $chat_user->name }}
+    <div class="grid grid-cols-3 gap-4 px-12 py-12 h-96">
+        <div class="col-span-3 justify-self-center">
+            <h3 class="text-2xl">Welcome@ {{ $this_chat->name }}</h3>
+            <p>Invite link:
+            <code class="bg-gray-200 text-gray-800 px-2 py-1 rounded-md">
+                    {{ route('chat.enter', ['unique_name' => $this_chat->unique_name]) }}
+                </code>
+            </p>
         </div>
-    @endforeach
 
-    <div id="chat_field">
-        @foreach($messages AS $message)
-            <div class="message_row">
-                <span class="message_from"><b>{{ $message->chatUser->name }}</b></span>
-                <span class="message">{{ $message->message }}</span>
+        <div class="w-full border-solid border-2 border-lime-700 rounded-md bg-lime-200 h-full max-h-80 overflow-y-auto">
+            <div class="text-center uppercase">
+                users in chat
             </div>
-        @endforeach
+            @foreach($this_chat->chatUsers AS $index => $chat_user)
+                <div class="border-solid border-2  border-lime-700 rounded-md mx-11 my-2 text-center">
+                    {{ $chat_user->name }}
+                </div>
+            @endforeach
+        </div>
 
+        <div class="border-solid border-2 border-lime-700 rounded-md bg-lime-100 col-span-2 px-8 py-3 h-full">
+            @php $chat_field_height_classes = ($messages->count() >= 10) ? 'h-full max-h-80' : '' @endphp
+
+
+            <div class="overflow-y-auto {{ $chat_field_height_classes }}">
+                @foreach($messages AS $message)
+                    @php $text_position = ($message->chat_user_id == $chat_user->id) ? 'text-right' : '' @endphp
+
+                    <div class="border-solid border-2 border-lime-700 rounded-md my-2 {{ $text_position }}">
+                        @if($message->chat_user_id != $chat_user->id)
+                            <span class="text-end"><b>{{ $message->chatUser->name }}</b></span>
+                        @endif
+
+                        <span class="text-end px-10">{{ $message->message }}</span>
+                    </div>
+                @endforeach
+
+            </div>
+
+            <form action="{{ route('message.send', ['chat' => $this_chat->id, 'chatUser' => $chat_user->id]) }}" method="post"
+                  class="">
+                @csrf
+
+                <div class="col-span-full mx-3 my-2">
+                    <div class="mt-2">
+                        <textarea name="message" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900
+                            shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2
+                            focus:ring-inset focus:ring-indigo-200 sm:text-sm sm:leading-6"></textarea>
+                    </div>
+                </div>
+
+                <button class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1
+                    ring-inset ring-gray-300 hover:bg-gray-50">
+                    Send
+                </button>
+
+            </form>
+        </div>
     </div>
-
-    <form action="{{ route('message.send', ['chat' => $this_chat->id, 'chatUser' => $chat_user->id]) }}" method="post"
-          class="align-center" id="send_message">
-        @csrf
-
-        <label for="message">
-            <input type="text" name="message" id="message" placeholder="Type your message here">
-        </label>
-
-        <button>Send</button>
-    </form>
 
 </x-layout>
